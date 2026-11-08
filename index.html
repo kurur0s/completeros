@@ -1,3 +1,4 @@
+<!--work in progress-->
 <!DOCTYPE html>
 <html lang="es" class="dark">
 <head>
@@ -126,7 +127,7 @@
 
                 <div>
                     <label for="reviewNote" class="text-xs uppercase tracking-wider text-untappd-textMuted font-semibold mb-2 block">¿Qué tal estuvo?</label>
-                    <textarea id="reviewNote" rows="2" maxlength="300" placeholder="Es un completo un sandwich? o un taco?" class="w-full bg-black/50 border border-untappd-border rounded-xl p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-untappd-accent transition resize-none"></textarea>
+                    <textarea id="reviewNote" rows="2" maxlength="300" placeholder="Deja una reseña breve..." class="w-full bg-black/50 border border-untappd-border rounded-xl p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-untappd-accent transition resize-none"></textarea>
                 </div>
 
                 <div class="bg-black/30 border border-untappd-border/80 rounded-xl p-4">
@@ -137,7 +138,7 @@
                             <span id="overallScoreDisplay">3.00</span>
                         </div>
                     </div>
-                    <input type="range" id="overallScore" data-display="overallScoreDisplay" min="1" max="5" step="0.25" value="3">
+                    <input type="range" id="overallScore" data-display="overallScoreDisplay" min="1" max="5" step="0.5" value="3">
                     <div class="flex justify-between text-[10px] text-untappd-textMuted mt-1 font-semibold px-1">
                         <span>1.0</span><span>2.0</span><span>3.0</span><span>4.0</span><span>5.0</span>
                     </div>
@@ -162,7 +163,7 @@
         <!-- Locales -->
         <section id="tab-history" class="space-y-4 hidden">
             <div class="bg-untappd-card border border-untappd-border rounded-2xl p-3 flex justify-between items-center">
-                <span class="text-xs text-untappd-textMuted font-semibold uppercase tracking-wider ml-1">Por local</span>
+                <span class="text-xs text-untappd-textMuted font-semibold uppercase tracking-wider ml-1">Locales Visitados</span>
                 <span id="checkinCountBadge" class="bg-black/60 border border-untappd-border text-untappd-accent text-xs font-bold px-2.5 py-1 rounded-full"></span>
             </div>
             <div id="historyFeed" class="space-y-4"></div>
@@ -187,17 +188,17 @@
             </div>
             <h3 class="text-lg font-bold text-white mb-1">¡Registro guardado!</h3>
             <p class="text-xs text-untappd-textMuted mb-4">Gracias por tu registro, Completero.</p>
-            <button id="closeModalBtn" class="w-full bg-untappd-accent text-black font-bold py-2.5 rounded-xl text-sm hover:bg-untappd-accentDark transition">Genial</button>
+            <button id="closeModalBtn" class="w-full bg-untappd-accent text-black font-bold py-2.5 rounded-xl text-sm hover:bg-untappd-accentDark transition">Genial!</button>
         </div>
     </div>
 
-    <!-- Todo el código va en un solo bloque, incluido Firebase -->
+    <!-- Todo el código va en un solo bloque? incluido Firebase? -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // ---------- DATOS ----------
-        const FRIENDS = ["Josefina", "Lucas", "Marcela", "Ximena"];
+        const FRIENDS = ["Josefina", "Lukas", "Marcela", "Ximena"];
 
         // Los locales se cargan desde un archivo JSON dentro del repositorio
         const VENUES_URL = "data/venues.json";
@@ -250,7 +251,7 @@
         // ---------- ESTADO DE CONEXIÓN ----------
         function setStatus(ok) {
             $("syncStatus").className = "inline-block w-2 h-2 rounded-full " + (ok ? "bg-green-500" : "bg-red-500");
-            $("syncText").textContent = ok ? "Conectado" : "Sin conexión con la base de datos";
+            $("syncText").textContent = ok ? "Conectado" : "Sin comunicación con el mas allá";
         }
 
         onSnapshot(checkinsRef,
@@ -345,7 +346,7 @@
                 $("modalNotice").classList.remove("opacity-0", "pointer-events-none");
             } catch (err) {
                 console.error("Error al guardar:", err);
-                alert("No se pudo guardar. Revisa tu conexión e inténtalo de nuevo.");
+                alert(":( algo malió sal");
             }
             submitBtn.disabled = false;
         });
@@ -377,7 +378,7 @@
                     <div class="bg-untappd-card border border-untappd-border rounded-2xl p-8 text-center text-untappd-textMuted">
                         <i class="fa-solid fa-utensils text-3xl mb-2 text-untappd-accent/40"></i>
                         <p class="font-semibold text-white">¡Aún no hay registros!</p>
-                        <p class="text-xs mt-1">Sé el primero en calificar un local.</p>
+                        <p class="text-xs mt-1">Sé el primero en completar un registro.</p>
                     </div>`;
                 return;
             }
