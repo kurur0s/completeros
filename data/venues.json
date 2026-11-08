@@ -1,26 +1,138 @@
 [
   {
     "id": "v1",
-    "name": "Elkika Ilmenau",
-    "address": "Diego de Velásquez 2109, Providencia",
-    "date": "2026-05-14",
+    "name": "La Picá de Clinton",
+    "address": "San Antonio 158, Santiago",
+    "date": "undefined",
     "components": ["Pan", "Salchicha", "Mayonesa"],
-    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana"]
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
   },
-  {
+{
     "id": "v2",
     "name": "Fuente Suiza",
     "address": "Av. Irarrázaval 3361, Ñuñoa",
-    "date": "2026-06-22",
+    "date": "undefined",
     "components": ["Pan", "Salchicha", "Mayonesa"],
-    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana"]
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
   },
-  {
+{
     "id": "v3",
+    "name": "Il Successo",
+    "address": "Av. Alameda 1370, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v4",
+    "name": "Super Soda",
+    "address": "Paseo Ahumada 90, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v5",
+    "name": "Fuente Mardoqueo",
+    "address": "Libertad 551, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Churrasco", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v6",
+    "name": "Antigua Fuente",
+    "address": "Av. Alameda 58, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v7",
+    "name": "Cerveceria Glück Restobar",
+    "address": "Av. Irarrázaval 689, Ñuñoa",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v8",
+    "name": "Barra de Pickles",
+    "address": "San Eugenio 40, Ñuñoa",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v10",
+    "name": "Don Nicola",
+    "address": "Portal Fernández Concha 968, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },  
+{
+    "id": "v11",
     "name": "La Predilecta",
     "address": "Los Tres Antonios 397, Ñuñoa",
-    "date": "2026-11-19",
+    "date": "",
     "components": ["Pan", "Salchicha", "Mayonesa"],
-    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana"]
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v12",
+    "name": "Elkika Ilmanau",
+    "address": "Diego de Velásquez 2109, Providencia",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v13",
+    "name": "Fuente Alemana",
+    "address": "Av. Pedro de Valdivia 210, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v14",
+    "name": "Fuente Chilena",
+    "address": "Av. Italia 1562, Ñuñoa",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v15",
+    "name": "Da Dino",
+    "address": "Av. Alameda 737, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v16",
+    "name": "Los Pincheira",
+    "address": "Alcalde Jorge Monckeberg, Ñuñoa",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+  {
+    "id": "v17",
+    "name": "El Beer Wall",
+    "address": "Av. Ricardo Cumming 90, Santiago",
+    "date": "undefined",
+    "components": ["Pan Mojado", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate Rallado", "Salsa Verde", "Americana", "Salsa de Ají"]
+  },
+{
+    "id": "v18",
+    "name": "La Terraza",
+    "address": "Av. Vicuña Mackenna 24, Santiago",
+    "date": "undefined",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana", "Salsa de Ají"]
   }
 ]
