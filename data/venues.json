@@ -1,0 +1,26 @@
+[
+  {
+    "id": "v1",
+    "name": "Elkika Ilmenau",
+    "address": "Diego de Velásquez 2109, Providencia",
+    "date": "2026-05-14",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana"]
+  },
+  {
+    "id": "v2",
+    "name": "Fuente Suiza",
+    "address": "Av. Irarrázaval 3361, Ñuñoa",
+    "date": "2026-06-22",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana"]
+  },
+  {
+    "id": "v3",
+    "name": "La Predilecta",
+    "address": "Los Tres Antonios 397, Ñuñoa",
+    "date": "2026-11-19",
+    "components": ["Pan", "Salchicha", "Mayonesa"],
+    "extras": ["Palta", "Chucrut", "Tomate", "Salsa Verde", "Americana"]
+  }
+]
