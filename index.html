@@ -16,8 +16,8 @@
                             bg: '#121212',
                             card: '#1e1e1e',
                             border: '#2a2a2a',
-                            accent: '#F36868',
-                            accentDark: '#C11010',
+                            accent: '#F6376A',
+                            accentDark: '#C8093C',
                             textMuted: '#9e9e9e'
                         }
                     },
@@ -63,7 +63,7 @@
             width: 24px;
             margin-top: -9px;
             border-radius: 50%;
-            background: #F36868;
+            background: #F6376A;
             cursor: pointer;
             box-shadow: 0 0 10px rgba(246, 55, 106, 0.4);
         }
@@ -71,7 +71,7 @@
             height: 24px;
             width: 24px;
             border-radius: 50%;
-            background: #F36868;
+            background: #F6376A;
             cursor: pointer;
             border: none;
             box-shadow: 0 0 10px rgba(246, 55, 106, 0.4);
@@ -83,7 +83,7 @@
     <header class="w-full max-w-md bg-untappd-card border border-untappd-border rounded-2xl p-4 mb-4 shadow-lg flex items-center justify-between sticky top-2 z-40">
         <div class="flex items-center space-x-3">
             <div class="w-10 h-10 rounded-full bg-untappd-accent flex items-center justify-center text-black font-extrabold text-xl shadow-md">
-                <i class="fa-solid fa-hotdog"></i>
+                <i class="fa-solid fa-utensils"></i>
             </div>
             <div>
                 <h1 class="font-bold text-lg leading-none text-white tracking-wide">Completeros</h1>
@@ -113,6 +113,11 @@
             </div>
 
             <form id="checkinForm" class="bg-untappd-card border border-untappd-border rounded-2xl p-5 shadow-lg space-y-5">
+                <div id="editingBanner" class="hidden bg-untappd-accent/20 border border-untappd-accent/50 rounded-xl p-2.5 flex justify-between items-center text-xs text-untappd-accent">
+                    <span class="font-bold"><i class="fa-solid fa-pen"></i> A ver, a ver, qué paso?</span>
+                    <button type="button" id="cancelEditBtn" class="bg-black/50 text-white px-2 py-0.5 rounded text-[10px] font-semibold">Cancelar</button>
+                </div>
+
                 <div>
                     <label class="text-xs uppercase tracking-wider text-untappd-textMuted font-semibold mb-2 flex items-center gap-1.5">
                         <i class="fa-solid fa-user text-untappd-accent"></i> ¿Quién eres?
@@ -127,7 +132,7 @@
 
                 <div>
                     <label for="reviewNote" class="text-xs uppercase tracking-wider text-untappd-textMuted font-semibold mb-2 block">¿Qué tal estuvo?</label>
-                    <textarea id="reviewNote" rows="2" maxlength="300" placeholder="Deja una reseña breve..." class="w-full bg-black/50 border border-untappd-border rounded-xl p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-untappd-accent transition resize-none"></textarea>
+                    <textarea id="reviewNote" rows="2" maxlength="300" placeholder="Cuéntales a tus amigos del sabor, el pan, la atención..." class="w-full bg-black/50 border border-untappd-border rounded-xl p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-untappd-accent transition resize-none"></textarea>
                 </div>
 
                 <div class="bg-black/30 border border-untappd-border/80 rounded-xl p-4">
@@ -138,7 +143,7 @@
                             <span id="overallScoreDisplay">3.00</span>
                         </div>
                     </div>
-                    <input type="range" id="overallScore" data-display="overallScoreDisplay" min="1" max="5" step="0.5" value="3">
+                    <input type="range" id="overallScore" data-display="overallScoreDisplay" min="1" max="5" step="0.25" value="3">
                     <div class="flex justify-between text-[10px] text-untappd-textMuted mt-1 font-semibold px-1">
                         <span>1.0</span><span>2.0</span><span>3.0</span><span>4.0</span><span>5.0</span>
                     </div>
@@ -163,7 +168,7 @@
         <!-- Locales -->
         <section id="tab-history" class="space-y-4 hidden">
             <div class="bg-untappd-card border border-untappd-border rounded-2xl p-3 flex justify-between items-center">
-                <span class="text-xs text-untappd-textMuted font-semibold uppercase tracking-wider ml-1">Locales Visitados</span>
+                <span class="text-xs text-untappd-textMuted font-semibold uppercase tracking-wider ml-1">Por local</span>
                 <span id="checkinCountBadge" class="bg-black/60 border border-untappd-border text-untappd-accent text-xs font-bold px-2.5 py-1 rounded-full"></span>
             </div>
             <div id="historyFeed" class="space-y-4"></div>
@@ -188,16 +193,16 @@
             </div>
             <h3 class="text-lg font-bold text-white mb-1">¡Registro guardado!</h3>
             <p class="text-xs text-untappd-textMuted mb-4">Gracias por tu registro, Completero.</p>
-            <button id="closeModalBtn" class="w-full bg-untappd-accent text-black font-bold py-2.5 rounded-xl text-sm hover:bg-untappd-accentDark transition">Genial!</button>
+            <button id="closeModalBtn" class="w-full bg-untappd-accent text-black font-bold py-2.5 rounded-xl text-sm hover:bg-untappd-accentDark transition">Genial</button>
         </div>
     </div>
 
-    <!-- Todo el código va en un solo bloque? incluido Firebase? -->
+    <!-- Todo el código va en un solo bloque? incluido Firebase? dejé la edición oculta :D -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // COMPLETEROS
+        //    DATOS     
         const FRIENDS = ["Josefina", "Lukas", "Marcela", "Ximena"];
 
         // Los locales se cargan desde un archivo JSON dentro del repositorio
@@ -213,12 +218,12 @@
                 showVenue();
                 renderHistory();
             } catch (err) {
-                console.error("No se pudieron cargar locales:", err);
+                console.error("No se pudo cargar los locales:", err);
                 $("venueAddress").textContent = "No se pudo cargar la lista de locales.";
             }
         }
 
-        //  FIREBASE  
+        //    FIREBASE     
         const firebaseConfig = {
             apiKey: "AIzaSyCLUkvi5DHcVjBNL7tzUgxKXF-s0Xks7g8",
             authDomain: "completeros.firebaseapp.com",
@@ -230,7 +235,7 @@
         const db = getFirestore(initializeApp(firebaseConfig));
         const checkinsRef = collection(db, "checkins");
 
-        //  ELEMENTOS  
+        //    ELEMENTOS     
         const $ = (id) => document.getElementById(id);
         const venueSelect = $("venueSelect");
         const userSelect = $("userSelect");
@@ -242,18 +247,20 @@
         const submitBtn = $("submitBtn");
 
         let checkins = [];
+        let editingId = null;
         const selectedExtras = new Set();
 
         // Evita que un texto con símbolos raros rompa la página
         const esc = (text) => String(text ?? "").replace(/[&<>"']/g, (c) =>
             ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-        // ESTADO DE CONEXIÓN  
+        //    ESTADO DE CONEXIÓN     
         function setStatus(ok) {
             $("syncStatus").className = "inline-block w-2 h-2 rounded-full " + (ok ? "bg-green-500" : "bg-red-500");
-            $("syncText").textContent = ok ? "Conectado" : "Sin comunicación con el mas allá";
+            $("syncText").textContent = ok ? "Conectado" : "Sin conexión con la base de datos";
         }
 
+        // En teoría, la sincronización funciona.. en teoría
         onSnapshot(checkinsRef,
             (snapshot) => {
                 checkins = snapshot.docs
@@ -267,7 +274,8 @@
                 setStatus(false);
             }
         );
- 
+
+        //    FORMULARIO     
         userSelect.innerHTML = FRIENDS.map((f) => `<option value="${esc(f)}">${esc(f)}</option>`).join("");
 
         function showVenue() {
@@ -281,7 +289,7 @@
                         <span class="text-sm font-bold text-white uppercase tracking-wide">${esc(name)}</span>
                         <span id="compScore_${i}" class="text-xs font-bold text-untappd-accent bg-black/60 px-2 py-0.5 rounded-md border border-untappd-border">3.00</span>
                     </div>
-                    <input type="range" class="component-slider" data-name="${esc(name)}" data-display="compScore_${i}" min="1" max="5" step="0.5" value="3">
+                    <input type="range" class="component-slider" data-name="${esc(name)}" data-display="compScore_${i}" min="1" max="5" step="0.25" value="3">
                 </div>
             `).join("");
 
@@ -292,6 +300,11 @@
         }
 
         function resetForm() {
+            editingId = null;
+            venueSelect.disabled = false;
+            userSelect.disabled = false;
+            $("editingBanner").classList.add("hidden");
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Registrar';
             checkinForm.reset();
             overallScore.value = 3;
             $("overallScoreDisplay").textContent = "3.00";
@@ -300,12 +313,14 @@
 
         venueSelect.addEventListener("change", showVenue);
 
+        // Todos los deslizadores: actualizan su número y sueltan el cuadro de texto
         checkinForm.addEventListener("input", (e) => {
             if (e.target.type !== "range") return;
             $(e.target.dataset.display).textContent = Number(e.target.value).toFixed(2);
             reviewNote.blur();
         });
 
+        // Botones de agregados (marcar / desmarcar)
         extrasContainer.addEventListener("click", (e) => {
             const pill = e.target.closest(".extra-pill");
             if (!pill) return;
@@ -329,21 +344,26 @@
                 score: Number(s.value)
             }));
 
+            const data = {
+                venueId: venueSelect.value,
+                userName: userSelect.value,
+                reviewNote: reviewNote.value.trim(),
+                overallScore: Number(overallScore.value),
+                components,
+                extras: [...selectedExtras]
+            };
+
             try {
-                await addDoc(checkinsRef, {
-                    venueId: venueSelect.value,
-                    userName: userSelect.value,
-                    reviewNote: reviewNote.value.trim(),
-                    overallScore: Number(overallScore.value),
-                    components,
-                    extras: [...selectedExtras],
-                    timestamp: new Date().toISOString()
-                });
+                if (editingId) {
+                    await updateDoc(doc(db, "checkins", editingId), data);
+                } else {
+                    await addDoc(checkinsRef, { ...data, timestamp: new Date().toISOString() });
+                }
                 resetForm();
                 $("modalNotice").classList.remove("opacity-0", "pointer-events-none");
             } catch (err) {
                 console.error("Error al guardar:", err);
-                alert(":( algo malió sal");
+                alert("No se pudo guardar. Revisa tu conexión e inténtalo de nuevo.");
             }
             submitBtn.disabled = false;
         });
@@ -352,6 +372,7 @@
             $("modalNotice").classList.add("opacity-0", "pointer-events-none");
         });
 
+        //    PESTAÑAS     
         function showTab(tab) {
             const isCheckin = tab === "checkin";
             $("tab-checkin").classList.toggle("hidden", !isCheckin);
@@ -362,6 +383,7 @@
         $("btnTabCheckin").addEventListener("click", () => showTab("checkin"));
         $("btnTabHistory").addEventListener("click", () => showTab("history"));
 
+        //    HISTORIAL     
         function renderHistory() {
             const feed = $("historyFeed");
             const badge = $("checkinCountBadge");
@@ -373,7 +395,7 @@
                     <div class="bg-untappd-card border border-untappd-border rounded-2xl p-8 text-center text-untappd-textMuted">
                         <i class="fa-solid fa-utensils text-3xl mb-2 text-untappd-accent/40"></i>
                         <p class="font-semibold text-white">¡Aún no hay registros!</p>
-                        <p class="text-xs mt-1">Sé el primero en completar un registro.</p>
+                        <p class="text-xs mt-1">Sé el primero en calificar un local.</p>
                     </div>`;
                 return;
             }
@@ -445,7 +467,12 @@
                             <span class="text-[10px] text-untappd-textMuted block">${date}</span>
                         </div>
                     </div>
-                    <div class="bg-black/80 border border-untappd-accent/40 text-untappd-accent font-bold text-xs px-2.5 py-1 rounded-lg">★ ${Number(item.overallScore).toFixed(2)}</div>
+                    <div class="flex items-center gap-2">
+                        <button data-edit="${item.id}" title="Editar registro " class="text-gray-400 hover:text-untappd-accent text-xs p-1">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <div class="bg-black/80 border border-untappd-accent/40 text-untappd-accent font-bold text-xs px-2.5 py-1 rounded-lg">★ ${Number(item.overallScore).toFixed(2)}</div>
+                    </div>
                 </div>
                 ${note}
                 ${components ? `<div class="grid grid-cols-2 gap-1.5 text-[11px] pt-1">${components}</div>` : ""}
@@ -453,7 +480,46 @@
             </div>`;
         }
 
-        //  INICIO  
+        //    EDITAR     
+        function startEdit(id) {
+            const item = checkins.find((c) => c.id === id);
+            if (!item) return;
+            editingId = id;
+
+            venueSelect.value = item.venueId;
+            showVenue();
+            userSelect.value = item.userName;
+            reviewNote.value = item.reviewNote || "";
+            overallScore.value = item.overallScore;
+            $("overallScoreDisplay").textContent = Number(item.overallScore).toFixed(2);
+
+            (item.components || []).forEach((c) => {
+                const slider = [...document.querySelectorAll(".component-slider")].find((s) => s.dataset.name === c.name);
+                if (!slider) return;
+                slider.value = c.score;
+                $(slider.dataset.display).textContent = Number(c.score).toFixed(2);
+            });
+
+            (item.extras || []).forEach((x) => {
+                [...document.querySelectorAll(".extra-pill")].find((p) => p.dataset.extra === x)?.click();
+            });
+
+            venueSelect.disabled = true;   // evita cambiar el local o el completero al editar
+            userSelect.disabled = true;
+            $("editingBanner").classList.remove("hidden");
+            submitBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Guardar cambios';
+            showTab("checkin");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        $("historyFeed").addEventListener("click", (e) => {
+            const btn = e.target.closest("[data-edit]");
+            if (btn) startEdit(btn.dataset.edit);
+        });
+
+        $("cancelEditBtn").addEventListener("click", resetForm);
+
+        //    INICIO     
         loadVenues();
     </script>
 </body>
